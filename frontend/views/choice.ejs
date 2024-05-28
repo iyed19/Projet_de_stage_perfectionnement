@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/choice.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3 active" href="/choice">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="search ps-3 pe-3 d-none d-lg-block">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <a class="btn btn-primary rounded-pill main-btn" href="/">Log Out</a>
+            </div>
+        </div>
+    </nav>
+    <div class="team text-center pt-3 pb-5">
+        <div class="container pt-3">
+            <h2 class="fw-bold mb-5">Make a choice</h2>
+            <p class="text-black-50 mb-5">
+                
+            </p>
+            <div class="row" style="display: flex; justify-content:center;">
+                <div class="col-md-6 col-lg-3 ms-4">
+                    <div class="box bg-white mt-3" id="Div">
+                        <h4 class="p-3 text-light">Agent</h4>
+                        <blockquote class="text-black-50 p-3">
+                            <a href="/api/addAgent"><button type="button" class="btn btn-success mb-2">Add an Agent</button></a><br>
+                            <a href="/api/updateAgent"><button type="button" class="btn btn-secondary mb-2">Update an Agent</button></a><br>
+                            <a href="/api/deleteAgent"><button type="button" class="btn btn-danger mb-2">Delete an Agent</button></a><br>
+                            <a href="/api/listOfAgent"><button type="button" class="btn btn-primary mb-2">List of Agents</button></a><br>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ms-5">
+                    <div class="box bg-white mt-3" id="Div">
+                        <h4 class="p-3 text-light">Product</h4>
+                            <blockquote class="text-black-50 p-3">
+                                <a href="/api/addProduct"><button type="button" class="btn btn-success mb-2">Add a Product</button></a><br>
+                                <a href="/api/updateProduct"><button type="button" class="btn btn-secondary mb-2">Update a Product</button></a><br>
+                                <a href="/api/deleteProduct"><button type="button" class="btn btn-danger mb-2">Delete a Product</button></a><br>
+                                <a href="/api/listOfProduct"><button type="button" class="btn btn-primary mb-2">List of Products</button></a><br>
+                            </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ms-5">
+                    <div class="box bg-white mt-3" id="Div">
+                        <h4 class="p-3 text-light">Order</h4>
+                        <blockquote class="text-black-50 p-3">
+                            <a href="/api/order"><button type="button" class="btn btn-success mb-2">Order a Product</button></a><br>
+                            <a href="/api/listOfOrder"><button type="button" class="btn btn-primary mb-2">List of Orders</button></a><br>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

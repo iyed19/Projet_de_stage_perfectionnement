@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/choice.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title></title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3 active" href="/choice">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="search ps-3 pe-3 d-none d-lg-block">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <a class="btn btn-primary rounded-pill main-btn" href="#">Log Out</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="margin-top:50px;">
+        <div class="form-group">
+            <h2 style="text-align: center; color: var(--gold-color);">Update the product :</h2>
+            <form id="updateForm">
+                <select class="form-select form-select-md mb-3 mt-1" aria-label=".form-select-lg example" id="option"
+                    name="option">
+                    <option selected>Select The Product</option>
+                    <% for(let product of listProducts) { %>
+                        <option value="<%= product._id %>">
+                            <%= product.category + '-' + product.brand + '-' + product.model + '--' + product.quantity
+                                + '  ' + product.buyingDate.toDateString().slice(0, 15) %>
+                        </option>
+                        <% } %>
+                </select>
+                <div class="form-group">
+                    <label for="name" class="text-light">Category</label>
+                    <input class="form-control mb-2" type="text" id="category" name="category" placeholder="Enter product category"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="text-light">Brand</label>
+                    <input class="form-control mb-2" type="text" id="brand" name="brand" placeholder="Enter product brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="text-light">Model</label>
+                    <input class="form-control mb-2" type="text" id="model" name="model" placeholder="Enter product model" required>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="text-light">Quantity</label>
+                    <input class="form-control mb-2" type="number" id="quantity" name="quantity" placeholder="Enter product's quantity"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-light">Buying Date</label>
+                    <input class="form-control mb-2" type="date" id="buyingDate" name="buyingDate" placeholder="Enter product's buying date"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-secondary me-1 mb-3">Update</button>
+            </form>
+        </div>
+        <div id="resultMessageContainer"></div>
+    </div>
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const selectedOption = document.getElementById('option');
+                const selectedProductId = selectedOption.value;
+                const category = document.getElementById('category').value;
+                const brand = document.getElementById('brand').value;
+                const model = document.getElementById('model').value;
+                const quantity = document.getElementById('quantity').value;
+                const buyingDate = document.getElementById('buyingDate').value;
+
+                const formData = {
+                    option: selectedProductId,
+                    category: category,
+                    brand: brand,
+                    model: model,
+                    quantity: quantity,
+                    buyingDate: buyingDate
+                };
+
+                fetch('/updateProduct', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                }).then(response => response.json());
+
+                function displayMessage(message) {
+                const resultMessageContainer = document.getElementById("resultMessageContainer");
+                const newDiv = document.createElement("div");
+                newDiv.classList.add("alert", "alert-secondary");
+                newDiv.textContent = message;
+                resultMessageContainer.appendChild(newDiv);
+            }
+            displayMessage("Product updated successfully!");
+            });
+    </script>
+</body>
+</html>
